@@ -21,6 +21,12 @@ def main(args):
     outdir = args.outdir
     mode = args.mode
 
+    print(f"output_version: {output_version}")
+    print(f"dataset_name: {dataset_name}")
+    print(f"input_cancer_class: {input_cancer_class}")
+    print(f"outdir: {outdir}")
+    print(f"mode: {mode}")
+
     PROJECT = "combine_ctcandi_ichorcna"
     thres_hypo = 0.3
     thres_hyper = 0.6
