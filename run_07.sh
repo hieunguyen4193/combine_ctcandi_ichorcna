@@ -13,7 +13,7 @@
 source /home/hieunguyen/miniconda3/bin/activate  && conda activate pytorch
 output_version="20241229";
 outdir="/media/hieunguyen/HNSD_mini/outdir";
-dataset_name="LOD";
+dataset_name="CONTROL";
 mode="all"
 # for dataset_name in LOD SPIKE_IN REPORT4 VALIDATION; do \
     # for mode in all hypo hyper;do \
