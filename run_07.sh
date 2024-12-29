@@ -14,14 +14,14 @@ source /home/hieunguyen/miniconda3/bin/activate  && conda activate pytorch
 output_version="20241229";
 outdir="/media/hieunguyen/HNSD_mini/outdir";
 dataset_name="REPORT4";
-
+mode="all"
 # for dataset_name in LOD SPIKE_IN REPORT4 VALIDATION; do \
-    for mode in all hypo hyper;do \
+    # for mode in all hypo hyper;do \
         parallel python 07_count_reads_in_regions.py \
             --output_version $output_version \
             --dataset_name $dataset_name \
             --input_cancer_class {} \
             --outdir $outdir \
             --mode $mode ::: Liver Lung Breast CRC pan_cancer;
-        done;
+        # done;
 # done
