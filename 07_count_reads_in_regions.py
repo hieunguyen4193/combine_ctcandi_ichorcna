@@ -74,7 +74,8 @@ def main(args):
     for file in tqdm(all_read_files):
         tmpdf = pd.read_csv(file, index_col = [0])
         tmpdf["read_overlap_rate"] = tmpdf[["start", "seq", "region"]].apply(lambda x: check_read_inside_region(x[0], x[1], x[2]), axis = 1)
-
+        tmpdf.to_csv(os.path.join(path_to_07_output, file.name.replace(".sorted.csv", ".raw.read_classification.csv")))
+        
         ##### keep only reads that are completely inside the region
         tmpdf = tmpdf[tmpdf["read_overlap_rate"] == "in"]
 
@@ -88,8 +89,13 @@ def main(args):
         ##### count hypo and hyper reads in each region
         resdf = tmpdf.groupby(["region", "read_classification"]).seq.count().reset_index().pivot_table(index = "region", columns = "read_classification", values = "seq").reset_index().fillna(0)
 
-        ##### get the region type from TCGA test results
-        resdf["region_type"] = resdf["region"].apply(lambda x: regiondf[regiondf.Var1 == x].hypo_or_hyper.values[0])
+        resdf["region_type"] = resdf["region"].apply(lambda x: ",".join(regiondf[regiondf.Var1 == x].hypo_or_hyper.unique()))
+        if "hyper" not in resdf.columns:
+            resdf["hyper"] = 0
+        if "hypo" not in resdf.columns:
+            resdf["hypo"] = 0
+        
+        resdf = resdf.assign(region_type=resdf["region_type"].str.split(",")).explode("region_type")
 
         ##### assign candi reads equal to number of hypo or hyper reads, depending on the region type
         resdf["candi_reads"] = resdf[["region_type", "hyper", "hypo"]].apply(lambda x: x[1] if x[0] == "hyper" else x[2], axis = 1)

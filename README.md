@@ -14,3 +14,4 @@
 
 - `01-06` analysis scripts: pre-process and find differential methylated loci/regions in TCGA data and GS-Target data. 
 
+- `07_count_reads_in_regions.py`: 
