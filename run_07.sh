@@ -10,7 +10,7 @@
 #                 done;done;done
 
 # Parallel RUN
-dataset_name="ctCandi_20250122_Hanh";
+dataset_name="BACKGROUND";
 source /home/hieunguyen/miniconda3/bin/activate  && conda activate pytorch
 output_version="20241229";
 outdir="/media/hieunguyen/HNSD_mini/outdir";
