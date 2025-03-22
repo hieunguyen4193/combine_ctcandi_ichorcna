@@ -10,10 +10,11 @@
 #                 done;done;done
 
 # Parallel RUN
-dataset_name="BACKGROUND";
+dataset_name="Truong_new_reqest_20250321";
 source /home/hieunguyen/miniconda3/bin/activate  && conda activate pytorch
 output_version="20241229";
-outdir="/media/hieunguyen/HNSD_mini/outdir";
+# outdir="/media/hieunguyen/HNSD_mini/outdir";
+outdir="/media/hieunguyen/HNHD01/outdir";
 mode="all"
         parallel python 07_count_reads_in_regions.py \
             --output_version $output_version \
